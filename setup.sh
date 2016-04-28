@@ -37,6 +37,10 @@ usage(){
 }
 
 #==== MAIN =====================================================================
+if [ ! -d "${SCRIPT_DIR}/repos" ]; then
+    mkdir "${SCRIPT_DIR}/repos"
+fi
+
 if [ "${1}" = "" ]; then
     features_common
     features_workstation
