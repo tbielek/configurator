@@ -34,6 +34,9 @@ usage(){
     echo ""
     echo "  -h, --help          Print this help."
     echo ""
+    echo "Common features: ${common_scripts[*]}"
+    echo ""
+    echo "Workstation features: ${workstation_scripts[*]}"
 }
 
 #==== MAIN =====================================================================
