@@ -10,14 +10,16 @@ workstation_scripts=($(ls "${workstation_path}"))
 
 features_common(){
     for feature in "${common_scripts[@]}"; do
-        "./${common_path}/${feature}/install.sh"
+        echo "running ${common_path}/${feature}/install.sh"
+        "${common_path}/${feature}/install.sh"
     done
     unset feature
 }
 
 features_workstation(){
     for feature in "${workstation_scripts[@]}"; do
-        "./${workstation_path}/${feature}/install.sh"
+        echo "running ${workstation_path}/${feature}/install.sh"
+        "${workstation_path}/${feature}/install.sh"
     done
     unset feature
 }
@@ -26,11 +28,11 @@ usage(){
     echo ""
     echo "Usage: $0 [[-c] | [-w] | [-h]]"
     echo ""
-    echo "-c, --common      Install common features."
+    echo "  -c, --common        Install common features."
     echo ""
-    echo "-w, --workstation Install common and workstation features."
+    echo "  -w, --workstation   Install common and workstation features."
     echo ""
-    echo "-h, --help        Print this help."
+    echo "  -h, --help          Print this help."
     echo ""
 }
 
