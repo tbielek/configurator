@@ -25,8 +25,10 @@ features_workstation(){
 }
 
 pull_updates(){
+  echo "Updating configurator"
   git pull
   git submodule update --init --recursive
+  echo "Done updating configurator"
   cd "${SCRIPT_DIR}/repos"
   for i in $(ls); do
     echo ----------------------------------------------------------------------
