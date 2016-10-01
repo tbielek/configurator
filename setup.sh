@@ -1,12 +1,17 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
-cd "$SCRIPT_DIR"
 
 common_path="${SCRIPT_DIR}/features/common"
 workstation_path="${SCRIPT_DIR}/features/workstation"
 common_scripts=($(ls "${common_path}"))
 workstation_scripts=($(ls "${workstation_path}"))
+
+exception(){
+  echo -n "Error: "
+  echo "$@"
+  exit 1
+}
 
 features_common(){
   for feature in "${common_scripts[@]}"; do
@@ -14,6 +19,7 @@ features_common(){
     "${common_path}/${feature}/install.sh"
   done
   unset feature
+  echo
 }
 
 features_workstation(){
@@ -22,6 +28,7 @@ features_workstation(){
     "${workstation_path}/${feature}/install.sh"
   done
   unset feature
+  echo
 }
 
 pull_updates(){
@@ -29,17 +36,20 @@ pull_updates(){
   git pull
   git submodule update --init --recursive
   echo "Done updating configurator"
-  cd "${SCRIPT_DIR}/repos"
-  for i in $(ls); do
+  cd "${SCRIPT_DIR}/repos" || exception "Unable to change directory to $SCRIPT_DIR."
+  for i in *; do
     echo ----------------------------------------------------------------------
     echo "Updating ${i}..."
-    cd "${i}"
+    cd "${i}" || exception "Unable to change directory to ${i}."
+    git fetch --all
     git pull
     git submodule update --init --recursive
+    ./install.sh
     echo "Done updating ${i}"
-    cd -
+    cd - || exception "Unable to return to previous directory."
   done
-  cd "${SCRIPT_DIR}"
+  cd "${SCRIPT_DIR}/repos" || exception "Unable to change directory to $SCRIPT_DIR."
+  echo
 }
 
 usage(){
@@ -60,6 +70,7 @@ usage(){
 }
 
 #==== MAIN =====================================================================
+cd "$SCRIPT_DIR" || exception "Unable to change directory to $SCRIPT_DIR."
 if [ ! -d "${SCRIPT_DIR}/repos" ]; then
   mkdir "${SCRIPT_DIR}/repos"
 fi
