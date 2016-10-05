@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
 cd "$SCRIPT_DIR"
 
-repo_url="https://boweevil@bitbucket.org/boweevil/xresources.git"
+repo_url="https://boweevil::@bitbucket.org/boweevil/xresources.git"
 install_path="../../../repos/xresources"
 
 if [ ! -d "${install_path}" ]; then

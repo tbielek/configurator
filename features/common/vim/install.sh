@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
 cd "$SCRIPT_DIR"
 
-repo_url="https://boweevil@bitbucket.org/boweevil/vim.git"
+repo_url="https://boweevil::@bitbucket.org/boweevil/vim.git"
 install_path="../../../repos/vim"
 
 if [ ! -d "${install_path}" ]; then

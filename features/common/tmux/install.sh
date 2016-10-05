@@ -3,7 +3,7 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
 cd "$SCRIPT_DIR"
 
-repo_url="https://boweevil@bitbucket.org/boweevil/tmux.git"
+repo_url="https://boweevil::@bitbucket.org/boweevil/tmux.git"
 install_path="../../../repos/tmux"
 
 if [ ! -d "${install_path}" ]; then
