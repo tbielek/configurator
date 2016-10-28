@@ -75,12 +75,12 @@ if [ ! -d "${SCRIPT_DIR}/repos" ]; then
   mkdir "${SCRIPT_DIR}/repos"
 fi
 
-if [ "${1}" = "" ]; then
+if [ -z "${1}" ]; then
   features_common
   features_workstation
   exit 0
 else
-  while [ "${1}" != "" ]; do
+  while [ ! -z "${1}" ]; do
     case "${1}" in
       -c | --common )
         features_common
