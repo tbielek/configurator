@@ -3,8 +3,8 @@
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
 cd "$SCRIPT_DIR"
 
-repo_url="https://boweevil::@bitbucket.org/boweevil/vim.git"
-install_path="../../../repos/vim"
+repo_url="https://boweevil::@bitbucket.org/boweevil/vim_vundle.git"
+install_path="../../../repos/vim_vundle"
 
 if [ ! -d "${install_path}" ]; then
   git clone "${repo_url}" "${install_path}"
