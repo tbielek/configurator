@@ -40,13 +40,18 @@ pull_updates(){
   for i in *; do
     echo ----------------------------------------------------------------------
     echo "Updating ${i}..."
-    cd "${i}" || exception "Unable to change directory to ${i}."
-    git fetch --all
-    git pull
-    git submodule update --init --recursive
-    ./install.sh
-    echo "Done updating ${i}"
-    cd - || exception "Unable to return to previous directory."
+    if [ "${i}" = "vim" ]; then
+      echo "${i} has been replaced by vim_vundle.  This feature is being removed."
+      rm -rf "${i}"
+    else
+      cd "${i}" || exception "Unable to change directory to ${i}."
+      git fetch --all
+      git pull
+      git submodule update --init --recursive
+      ./install.sh
+      echo "Done updating ${i}"
+      cd - || exception "Unable to return to previous directory."
+    fi
   done
   cd "${SCRIPT_DIR}/repos" || exception "Unable to change directory to $SCRIPT_DIR."
   echo
