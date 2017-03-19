@@ -1,5 +1,5 @@
+https://boweevil::@bitbucket.org/boweevil/installpkg.git
 https://boweevil::@bitbucket.org/boweevil/bash.git
-https://boweevil::@bitbucket.org/boweevil/pkgs_cli.git
 https://boweevil::@bitbucket.org/boweevil/tmux.git
 https://boweevil::@bitbucket.org/boweevil/vim_vundle.git
 https://boweevil::@bitbucket.org/boweevil/pkgs_gui.git
