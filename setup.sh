@@ -128,6 +128,12 @@ installFeatures ()
     feature_dir="$(sed 's/^.*\///g' <<< "${feature}" | cut -f 1 -d '.')"
     cd "${feature_dir}" \
     	|| except "$LINENO"  "Unable to change directory to ${feature_dir}." 71
+    # Install any packages required by the feature.
+    if [ -d "./packages" ]; then
+      if [ -e "${SCRIPT_DIR}/installpkg/installPkg.sh" ]; then
+        "${SCRIPT_DIR}/installpkg/installPkg.sh" -c ./packages
+      fi
+    fi
     if [ ! -e 'install.sh' ]; then
       except "$LINENO" "Unable to find install script for ${feature}." 72
     fi
@@ -136,12 +142,6 @@ installFeatures ()
     cd "${configurator_dir}" \
       || except "$LINENO" "Unable to change directory to ${configurator_dir}." 71
     markInstalled "${feature_dir}"
-    # Install any packages required by the feature.
-    if [ -d "${feature_dir}/packages" ]; then
-      if [ -d "${SCRIPT_DIR}/installpkg/installPkg.sh" ]; then
-        "${SCRIPT_DIR}/installpkg/installPkg.sh" -c "${feature_dir}/packages"
-      fi
-    fi
     echo "Finished installing ${feature}."
   done
 }
