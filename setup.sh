@@ -246,6 +246,7 @@ done
 
 if [ "${todo}" = 'install' ] ; then
   installFeatures
+  "${SCRIPT_DIR}/installpkg/installPkg.sh" -i
 elif [ "${todo}" = 'update' ] ; then
   pullUpdates
 fi
