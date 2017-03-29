@@ -136,6 +136,12 @@ installFeatures ()
     cd "${configurator_dir}" \
       || except "$LINENO" "Unable to change directory to ${configurator_dir}." 71
     markInstalled "${feature_dir}"
+    # Install any packages required by the feature.
+    if [ -d "${feature_dir}/packages" ]; then
+      if [ -d "${SCRIPT_DIR}/installpkg/installPkg.sh" ]; then
+        "${SCRIPT_DIR}/installpkg/installPkg.sh" -c "${feature_dir}/packages"
+      fi
+    fi
     echo "Finished installing ${feature}."
   done
 }
@@ -188,6 +194,8 @@ pullUpdates ()
 
 
 # MAIN ########################################################################
+git submodule update --init --recursive
+
 if [ ! -e "${features_file}" ]; then
   except "$LINENO" "Please, create ${features_file}. Use features_example.txt as a reference." 1
 fi
