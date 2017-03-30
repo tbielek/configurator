@@ -14,15 +14,15 @@ Features have the following attributes:
 All repoistories are cloned to `$HOME/.configurator/`
 
 
-[Configurator]: https://bitbucket.org/boweevil/configurator
-[features_example.txt]: https://bitbucket.org/boweevil/configurator/src/083e4177d07df56fcee5cbe83f2c79b125db6be7/features_example.txt?at=master&fileviewer=file-view-default
-[issue tracker]: https://bitbucket.org/boweevil/configurator/issues?status=new&status=open
+[Configurator]: https://github.com/boweevil/configurator
+[features_example.txt]: https://github.com/boweevil/configurator/blob/master/features_example.txt
+[issue tracker]: https://github.com/boweevil/configurator/issues
 
 ## Why?!?!
 [Configurator] was created to allow for quick and easy deployment of personal configurations to a new Linux installation.  With this tool there is no need to manually clone multiple repositories, keep them organized, move/copy the files into place, or update the files when changes are made to the repositories.
 
 ## Installation
-* Clone this repository, <https://bitbucket.org/boweevil/configurator>, and navigate to the configurator directory.  I usually create `$HOME/opt` and clone configurator to `$HOME/opt/configurator`.
+* Clone this repository, <https://github.com/boweevil/configurator>, and navigate to the configurator directory.  I usually create `$HOME/opt` and clone configurator to `$HOME/opt/configurator`.
 
 * Create the file `features.txt` and add the repos you want to install.  Use the [features_example.txt] file as a reference.  For instance, to install my configurations for vim, tmux, & bash, `features.txt` should contain the following:
 
