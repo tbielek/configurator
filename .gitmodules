@@ -1,0 +1,3 @@
+[submodule "installpkg"]
+	path = installpkg
+	url = https://boweevil::@github.com/boweevil/installpkg.git
