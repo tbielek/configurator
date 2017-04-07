@@ -28,7 +28,7 @@ All repoistories are cloned to `$HOME/.configurator/`
 
 ```
 https://boweevil::@bitbucket.org/boweevil/bash.git
-https://boweevil::@bitbucket.org/boweevil/tmux.git
+https://boweevil::@github.com/boweevil/configurator-tmux.git
 https://boweevil::@bitbucket.org/boweevil/vim_vundle.git
 ```
 
