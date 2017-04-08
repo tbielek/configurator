@@ -27,9 +27,9 @@ All repoistories are cloned to `$HOME/.configurator/`
 * Create the file `features.txt` and add the repos you want to install.  Use the [features_example.txt] file as a reference.  For instance, to install my configurations for vim, tmux, & bash, `features.txt` should contain the following:
 
 ```
-https://boweevil::@bitbucket.org/boweevil/bash.git
+https://boweevil::@github.com/boweevil/configurator-bash.git
 https://boweevil::@github.com/boweevil/configurator-tmux.git
-https://boweevil::@bitbucket.org/boweevil/vim_vundle.git
+https://boweevil::@github.com/boweevil/configurator-vim.git
 ```
 
 * Once `features.txt` has been created, you can run the `setup.sh` script to install the listed features.  Running `./setup.sh -i` will parse the `features.txt` file and clone each repository to `$HOME/.configurator/<repo>`.  It will then run the `install.sh` contained in the repo to perform the installation for that feature.
