@@ -20,7 +20,8 @@ set -o pipefail
 
 # defaults --------------------------------------------------------------------
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
-export SCRIPT_DIR
+CONFIGURATOR="${SCRIPT_DIR}"
+export CONFIGURATOR
 SCRIPT_NAME="$( basename "$0" )"
 SCRIPT_VERSION='1.0.0'
 

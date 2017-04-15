@@ -21,7 +21,6 @@ set -o pipefail
 
 # defaults --------------------------------------------------------------------
 SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )
-export SCRIPT_DIR
 
 declare -A configs
 
@@ -170,6 +169,9 @@ install ()
   #    PARAMETERS:  NONE
   #       RETURNS:  NONE
   #-------------------------------------------------------------------------------
+  # Install all required packages for the feature.
+  packages
+
   # link all the configs
   if [ -e "${config_files}" ]; then
     # shellcheck source=./config_files.sh
@@ -182,7 +184,7 @@ install ()
       done
     fi
   fi
-  
+
   # do any custom task for the feature.  for instance running vundle for vim.
   if [ -e "${custom_script}" ]; then
     # shellcheck source=./custom.sh
@@ -210,6 +212,22 @@ uninstall ()
     fi
   fi
 }	# ----------  end of function uninstall  ----------
+
+packages ()
+{
+  #---  FUNCTION  ----------------------------------------------------------------
+  #          NAME:  packages
+  #   DESCRIPTION:  Install packages with installPkg
+  #    PARAMETERS:  NONE
+  #       RETURNS:  NONE
+  #-------------------------------------------------------------------------------
+  if [[ -n "${CONFIGURATOR}" ]]; then
+    "${CONFIGURATOR}/installpkg/installPkg.sh" -c "${SCRIPT_DIR}/packages"
+  else
+    git clone https://boweevil::@github.com/boweevil/installpkg.git "${SCRIPT_DIR}/installpkg"
+    "${SCRIPT_DIR}/installpkg/installPkg.sh" -c "${SCRIPT_DIR}/packages"
+  fi
+}
 
 
 # main ------------------------------------------------------------------------
