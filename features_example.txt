@@ -1,5 +1,5 @@
 https://boweevil::@github.com/boweevil/configurator-bash.git
 https://boweevil::@github.com/boweevil/configurator-tmux.git
 https://boweevil::@github.com/boweevil/configurator-vim.git
-https://boweevil::@bitbucket.org/boweevil/redshift.git
-https://boweevil::@bitbucket.org/boweevil/xresources.git
+https://boweevil::@github.com/boweevil/configurator-redshift.git
+https://boweevil::@github.com/boweevil/configurator-xresources.git
