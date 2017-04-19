@@ -189,7 +189,9 @@ pullUpdates ()
 
 
 # MAIN ########################################################################
-git submodule update --init --recursive
+if [ ! -d "${SCRIPT_DIR}/installpkg" ]; then
+  git clone https://github.com/boweevil/installpkg.git
+fi
 
 if [ ! -e "${features_file}" ]; then
   except "$LINENO" "Please, create ${features_file}. Use features_example.txt as a reference." 1
@@ -238,10 +240,6 @@ while [ -n "$1" ]; do
   esac
   shift
 done
-
-if [ ! -d "${SCRIPT_DIR}/installpkg" ]; then
-  git clone https://github.com/boweevil/installpkg.git
-fi
 
 if [ "${todo}" = 'install' ] ; then
   installFeatures
