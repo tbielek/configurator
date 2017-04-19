@@ -239,6 +239,10 @@ while [ -n "$1" ]; do
   shift
 done
 
+if [ ! -d "${SCRIPT_DIR}/installpkg" ]; then
+  git clone https://github.com/boweevil/installpkg.git
+fi
+
 if [ "${todo}" = 'install' ] ; then
   installFeatures
   "${SCRIPT_DIR}/installpkg/installPkg.sh" -i
