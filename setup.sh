@@ -193,6 +193,13 @@ if [ ! -d "${SCRIPT_DIR}/installpkg" ]; then
   git clone https://github.com/boweevil/installpkg.git
 fi
 
+cd "${SCRIPT_DIR}/installpkg" || \
+  except "$LINENO" "Unabled to find $_." 1
+
+git pull
+cd - || \
+  except "$LINENO" "Unabled to find $_." 1
+
 if [ ! -e "${features_file}" ]; then
   except "$LINENO" "Please, create ${features_file}. Use features_example.txt as a reference." 1
 fi
