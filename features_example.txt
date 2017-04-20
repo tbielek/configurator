@@ -3,3 +3,4 @@ https://boweevil::@github.com/boweevil/configurator-tmux.git
 https://boweevil::@github.com/boweevil/configurator-vim.git
 https://boweevil::@github.com/boweevil/configurator-redshift.git
 https://boweevil::@github.com/boweevil/configurator-xresources.git
+https://boweevil::@github.com/boweevil/configurator-gnome-terminal.git
