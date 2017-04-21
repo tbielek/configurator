@@ -35,7 +35,7 @@ https://boweevil::@github.com/boweevil/configurator-tmux.git
 https://boweevil::@github.com/boweevil/configurator-vim.git
 ```
 
-* Once `features.txt` has been created, you can run the `setup.sh` script to install the listed features.  Running `./setup.sh -i` will parse the `features.txt` file and clone each repository to `$HOME/.configurator/<repo>`.  It will then run the `install.sh` contained in the repo to perform the installation for that feature.
+* Once `features.txt` has been created, you can run the `setup.sh` script to install the listed features.  Running `./setup.sh -i` will parse the `features.txt` file and clone each repository to `$HOME/.configurator/<repo>`.  It will then run the `install.sh` contained in the repo to perform the installation for that feature.  Features may also be installed individually by adding them as space delimited arguments after `-i`.
 
 ```
 Usage: ./setup.sh [ARGUMENTS]...
@@ -43,7 +43,8 @@ Usage: ./setup.sh [ARGUMENTS]...
 The following arguments are available.
   -h, --help        Print this help and exit.
   -v, --version     Print the version and exit.
-  -i, --install     Install features listed in features.txt.
+  -i, --install     Install features from ${features_file} or feature URLs as arguments.
+                    If features are provided as arguments they should be space delimited.
                     Cannot be used with -u.
   -u, --update      Update all repositories.
                     Cannot be used with -i.
@@ -52,6 +53,7 @@ Examples:
 ./setup.sh -h
 ./setup.sh -v
 ./setup.sh -i
+./setup.sh -i https://boweevil::@github.com/boweevil/configurator-vim.git
 ./setup.sh -u
 ```
 

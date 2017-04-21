@@ -79,7 +79,8 @@ usage ()
   echo "The following arguments are available."
   echo "  -h, --help        Print this help and exit."
   echo "  -v, --version     Print the version and exit."
-  echo "  -i, --install     Install features from ${features_file}."
+  echo "  -i, --install     Install features from ${features_file} or feature URLs as arguments."
+  echo "                    If features are provided as arguments they should be space delimited."
   echo "                    Cannot be used with -u."
   echo "  -u, --update      Update all repositories."
   echo "                    Cannot be used with -i."
@@ -90,6 +91,7 @@ usage ()
   echo "${SCRIPT_NAME} -v"
   echo
   echo "${SCRIPT_NAME} -i"
+  echo "${SCRIPT_NAME} -i https://boweevil::@github.com/boweevil/configurator-vim.git"
   echo
   echo "${SCRIPT_NAME} -u"
   echo
@@ -189,6 +191,7 @@ pullUpdates ()
 
 
 # MAIN ########################################################################
+# Setup installpkg
 if [ ! -d "${SCRIPT_DIR}/installpkg" ]; then
   git clone https://github.com/boweevil/installpkg.git
 fi
@@ -198,12 +201,14 @@ cd "${SCRIPT_DIR}/installpkg" || \
 
 git pull
 cd - || \
-  except "$LINENO" "Unabled to find $_." 1
+  except "$LINENO" "Unabled to change to previous directory." 1
 
+# Verify that features.txt is present.
 if [ ! -e "${features_file}" ]; then
   except "$LINENO" "Please, create ${features_file}. Use features_example.txt as a reference." 1
 fi
 
+# Create ~/.configurator
 if [ ! -d "${configurator_dir}" ]; then
   mkdir "${configurator_dir}"
 fi
@@ -226,11 +231,16 @@ while [ -n "$1" ]; do
       exit 0
       ;;
     '-i' | '--install' )
+      shift
       if [ -n "${todo}" ]; then
         echo "Install and update are mutually exclusive arguments."
         except "$LINENO" "Invalid argument $1." 60
       fi
-      readarray features < "${features_file}"
+      if [[ -n "$1" ]]; then
+        features=("$@")
+      else
+        readarray features < "${features_file}"
+      fi
       todo='install'
       ;;
     '-u' | '--update' )
