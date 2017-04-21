@@ -221,6 +221,10 @@ packages ()
   #    PARAMETERS:  NONE
   #       RETURNS:  NONE
   #-------------------------------------------------------------------------------
+  if [[ ! -d "${SCRIPT_DIR}/packages" ]]; then
+    echo "No packages defined for installation."
+    return 0
+  fi
   if [[ -n "${CONFIGURATOR}" ]]; then
     "${CONFIGURATOR}/installpkg/installPkg.sh" -c "${SCRIPT_DIR}/packages"
   else
