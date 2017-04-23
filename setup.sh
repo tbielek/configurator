@@ -242,6 +242,7 @@ while [ -n "$1" ]; do
         readarray features < "${features_file}"
       fi
       todo='install'
+      break
       ;;
     '-u' | '--update' )
       if [ -n "${todo}" ]; then
@@ -250,6 +251,7 @@ while [ -n "$1" ]; do
       fi
       readarray features < "${installed_features}"
       todo='update'
+      break
       ;;
     * )
       except "$LINENO" "Invalid argument $1." 60
